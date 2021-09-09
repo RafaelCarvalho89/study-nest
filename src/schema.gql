@@ -1,0 +1,113 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+}
+
+type Indicator {
+  id: ID!
+  name: String!
+  description: String!
+  slug: String!
+  category: String!
+}
+
+type Census {
+  id: ID!
+  name: String!
+  description: String!
+  schoolsTotal: String!
+  participantsTotal: String!
+}
+
+type School {
+  id: ID!
+  name: String!
+  externalId: String!
+}
+
+type IndicatorBySchool {
+  id: ID!
+  average: Float!
+  distribuation: [Float!]!
+  brands: [String!]!
+  census: Census!
+  censusId: String!
+  school: School!
+  schoolId: String!
+  indicator: Indicator!
+  indicatorId: String!
+}
+
+type Query {
+  users: [User!]!
+  user(id: String!): User!
+  indicators: [Indicator!]!
+  indicator(id: String!): Indicator!
+  censuss: [Census!]!
+  census(id: String!): Census!
+  schools: [School!]!
+  school(id: String!): School!
+  indicatorsBySchool: [IndicatorBySchool!]!
+  indicatorBySchool(id: String!): IndicatorBySchool!
+  indicatorBySchoolWithFilter(filters: FilterIndicatorBySchool!): [IndicatorBySchool!]!
+}
+
+input FilterIndicatorBySchool {
+  censusId: String!
+  schoolIds: [String!]!
+  indicatorIds: [String!]!
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): User!
+  updateUser(data: UpdateUserInput!, id: String!): User!
+  deleteUser(id: String!): Boolean!
+  createIndicator(data: CreateIndicatorInput!): Indicator!
+  deleteIndicator(id: String!): Boolean!
+  createCensus(data: CreateCensusInput!): Census!
+  createSchool(data: CreateSchoolInput!): School!
+  createIndicatorBySchool(data: CreateIndicatorBySchoolInput!): IndicatorBySchool!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+}
+
+input CreateIndicatorInput {
+  name: String!
+  description: String!
+  slug: String!
+  category: String!
+}
+
+input CreateCensusInput {
+  name: String!
+  description: String!
+  schoolsTotal: String!
+  participantsTotal: String!
+}
+
+input CreateSchoolInput {
+  name: String!
+  externalId: String!
+}
+
+input CreateIndicatorBySchoolInput {
+  average: Float!
+  distribuation: [Float!]!
+  brands: [String!]!
+  censusId: String!
+  schoolId: String!
+  indicatorId: String!
+}
